@@ -7,8 +7,11 @@
 Make sure you have Python and pip installed on your system. Then, follow the steps below to set up the environment:
 
 python -m venv venv
+
 source venv/bin/activate  # For Linux/Mac
+
 venv\Scripts\activate  # For Windows
+
 pip install -r requirements.txt
 
 ### 2. Running the Application
