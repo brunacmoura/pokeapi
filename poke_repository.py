@@ -1,8 +1,10 @@
 import requests
+import os
 
 
-def get_berry_data(pokeapi_base_url: str):
-    response = requests.get(f"{pokeapi_base_url}?limit=100")
+def get_berry_data():
+    base_url = os.getenv('POKEAPI_BASE_URL')
+    response = requests.get(f"{base_url}?limit=100")
 
     if response.status_code != 200:
         return None, None
