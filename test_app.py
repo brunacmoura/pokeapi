@@ -26,7 +26,7 @@ def client():
 
 
 def test_should_return_all_berry_stats(client):
-    rv = client.get('/allBerryStats')
+    rv = client.get('/berry/allBerryStats')
     assert rv.status_code == 200
     response_data = rv.get_json()
     assert 'berries_names' in response_data
