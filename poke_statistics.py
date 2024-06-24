@@ -1,4 +1,5 @@
 import statistics
+import matplotlib.pyplot as plt
 
 
 def calculate_statistics(growth_times):
@@ -17,3 +18,13 @@ def calculate_statistics(growth_times):
         "mean_growth_time": mean_growth_time,
         "frequency_growth_time": frequency_growth_time
     }
+
+
+def create_histogram(growth_times):
+    plt.figure()
+    plt.hist(growth_times)
+    plt.title('Poke Berries Growth Times')
+    plt.xlabel('Growth Time')
+    plt.ylabel('Frequency')
+    plt.savefig('static/histogram.png')
+    plt.close()
