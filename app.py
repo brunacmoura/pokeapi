@@ -1,8 +1,8 @@
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from dotenv import load_dotenv
 from poke_repository import get_berry_data
-from poke_statistics import calculate_statistics
+from poke_statistics import calculate_statistics, create_histogram
 
 load_dotenv()
 
@@ -19,6 +19,7 @@ def all_berry_stats():
         return jsonify({'error': 'Could not fetch data from PokeAPI'}), 500
 
     stats = calculate_statistics(growth_times)
+    create_histogram(growth_times)
 
     response = {
         "berries_names": berry_names,
@@ -26,6 +27,11 @@ def all_berry_stats():
     }
 
     return jsonify(response), 200, {'Content-Type': 'application/json'}
+
+
+@app.route('/histogram')
+def display_histogram():
+    return render_template('histogram.html')
 
 
 if __name__ == '__main__':
