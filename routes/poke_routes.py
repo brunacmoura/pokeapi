@@ -3,12 +3,14 @@ from flask_restx import Namespace, Resource
 from poke_repository import get_berry_data
 from poke_statistics import calculate_statistics, create_histogram
 from exceptions import CustomException
+from extensions import cache
 
 api = Namespace('berry', description='Berry related operations')
 
 
 @api.route('/allBerryStats')
 class AllBerryStats(Resource):
+    @cache.cached(timeout=60)
     def get(self):
         try:
             growth_times, berry_names = get_berry_data()
@@ -35,6 +37,7 @@ class AllBerryStats(Resource):
 
 @api.route('/histogram')
 class Histogram(Resource):
+    @cache.cached(timeout=60)
     def get(self):
         try:
             growth_times, berry_names = get_berry_data()
