@@ -4,14 +4,14 @@
 
 ### 1. Environment Setup
 
-#### Using Docker
+#### - Using Docker
 Make sure you have Docker installed on your system. Then, follow these steps to build and run the application inside a Docker container:
 
 docker build -t poke_api .
 
 docker run -p 5000:5000 --name poke_api poke_api
 
-#### Without Docker
+#### - Without Docker
 Make sure you have Python and pip installed on your system. Then, follow the steps below to set up the environment:
 
 python -m venv venv
@@ -24,11 +24,11 @@ pip install -r requirements.txt
 
 ### 2. Running the Application
 
-#### Using Docker
+#### - Using Docker
 
 Once the Docker container is running, you can access your Flask application at http://localhost:5000.
 
-#### Without Docker
+#### - Without Docker
 
 After setting up the environment, you can start the Flask application by running the following command:
 
@@ -38,11 +38,11 @@ flask run
 
 To run the automated tests, use the following command:
 
-#### Using Docker
+#### - Using Docker
 
 docker exec -it poke_api pytest
 
-#### Without Docker
+#### - Without Docker
 
 pytest
 
