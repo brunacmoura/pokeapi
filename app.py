@@ -23,6 +23,3 @@ api = Api(app, version='1.0', title='API Documentation',
 api.add_namespace(poke_namespace)
 
 app.register_error_handler(CustomException, handle_custom_exception)
-
-if __name__ == '__main__':
-    app.run(debug=True)
