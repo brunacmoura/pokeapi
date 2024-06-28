@@ -24,10 +24,14 @@ def calculate_statistics(growth_times):
 
 def create_histogram(growth_times):
     plt.figure()
-    plt.hist(growth_times)
+
+    n, bins, patches = plt.hist(growth_times, density=True, alpha=0.75, edgecolor='black')
+
     plt.title('Poke Berries Growth Times')
     plt.xlabel('Growth Time')
     plt.ylabel('Frequency')
+
+    plt.tight_layout()
 
     buffer = BytesIO()
     plt.savefig(buffer, format='png')
