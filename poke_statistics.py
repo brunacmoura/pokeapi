@@ -1,3 +1,4 @@
+import os
 import statistics
 import matplotlib.pyplot as plt
 
@@ -21,10 +22,12 @@ def calculate_statistics(growth_times):
 
 
 def create_histogram(growth_times):
+    filepath = os.path.join('static', 'histogram.png')
+
     plt.figure()
     plt.hist(growth_times)
     plt.title('Poke Berries Growth Times')
     plt.xlabel('Growth Time')
     plt.ylabel('Frequency')
-    plt.savefig('static/histogram.png')
+    plt.savefig(filepath)
     plt.close()
