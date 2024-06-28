@@ -1,3 +1,4 @@
+from io import BytesIO
 import os
 import statistics
 import matplotlib.pyplot as plt
@@ -22,17 +23,16 @@ def calculate_statistics(growth_times):
 
 
 def create_histogram(growth_times):
-    filepath = os.path.join('static', 'histogram.png')
-
-    if os.path.exists(filepath):
-        os.remove(filepath)
-
-    os.environ['MPLCONFIGDIR'] = '/tmp/matplotlib-cache'
-
     plt.figure()
     plt.hist(growth_times)
     plt.title('Poke Berries Growth Times')
     plt.xlabel('Growth Time')
     plt.ylabel('Frequency')
-    plt.savefig(filepath)
+
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+
     plt.close()
+
+    return buffer.getvalue()

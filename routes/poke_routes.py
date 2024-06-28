@@ -1,3 +1,4 @@
+import base64
 from flask import jsonify, make_response, render_template
 from flask_restx import Namespace, Resource
 from poke_repository import get_berry_data
@@ -44,9 +45,14 @@ class Histogram(Resource):
             if growth_times is None:
                 raise CustomException("Could not fetch data from PokeAPI", status_code=500)
 
-            create_histogram(growth_times)
-            response = make_response(render_template('histogram.html'))
+            img_bytes = create_histogram(growth_times)
+
+            img_base64 = base64.b64encode(img_bytes).decode('utf-8')
+
+            html_content = render_template('histogram.html', img_data=img_base64)
+            response = make_response(html_content)
             response.headers['Content-Type'] = 'text/html'
+
             return response
         except Exception as e:
             raise CustomException(f"An unexpected error occurred: {str(e)}", status_code=500)
