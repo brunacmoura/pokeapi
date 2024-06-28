@@ -1,14 +1,16 @@
 {
-    "builds": [
-        {
-            "src": "app.py",
-            "use": "@vercel/python"
-        }
-    ],
+    "version": 2,
+    "builds": [{ "src": "app.py", "use": "@vercel/python" }],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "app.py"
+      { "handle": "filesystem" },
+      {
+        "src": "/tmp/(.*)",
+        "headers": { "Cache-Control": "no-store" },
+        "continue": true
+      },
+      { "src": "/.*", "dest": "app.py" }
+    ],
+    "env": {
+      "MPLCONFIGDIR": "/tmp/matplotlib-cache"
     }
-]
 }
